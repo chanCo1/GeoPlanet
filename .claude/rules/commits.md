@@ -69,6 +69,16 @@ Fixes #123
 Breaking Change: 속성명을 'foo'에서 'bar'로 변경
 ```
 
+### Co-Authored-By (Claude 공동 작성)
+
+Claude와 함께 작성한 커밋에는 반드시 아래 트레일러를 추가:
+
+```
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+- ✅ Claude Code가 커밋 생성 시 자동으로 추가
+
 ## 예시
 
 ### 기능 추가
