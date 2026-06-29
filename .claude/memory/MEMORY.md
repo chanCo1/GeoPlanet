@@ -75,6 +75,6 @@
 - FSD: 아래로만 임포트 (위로 절대 불가)
 
 ### 4. 커밋 규칙
-- 형식: `<type>(<scope>): <subject>`
-- 타입: feat, fix, docs, style, refactor, perf, test, chore, ci
-- 범위: web/*, server/*, repo 등
+- 형식: `<type>: <subject>`
+- 타입: ADD (추가/생성), UPD (수정), FIX (버그수정), DEL (삭제)
+- Claude 커밋 시 `Co-Authored-By: Claude <noreply@anthropic.com>` 추가
