@@ -57,33 +57,40 @@ const config: Config = {
 
       fontSize: {
         // Display
-        'hero-display': ['64px', { lineHeight: '1.1', letterSpacing: '-1px', fontWeight: '700' }],
-        'display-lg': ['48px', { lineHeight: '1.1', letterSpacing: '-0.5px', fontWeight: '700' }],
-        'display-md': ['40px', { lineHeight: '1.15', letterSpacing: '-0.3px', fontWeight: '600' }],
-        'display-sm': ['32px', { lineHeight: '1.2', letterSpacing: '0', fontWeight: '600' }],
+        'hero-display': ['64px', { lineHeight: '1.1', letterSpacing: '-1px' }],
+        'display-lg': ['48px', { lineHeight: '1.1', letterSpacing: '-0.5px' }],
+        'display-md': ['40px', { lineHeight: '1.15', letterSpacing: '-0.3px' }],
+        'display-sm': ['32px', { lineHeight: '1.2', letterSpacing: '0' }],
 
         // Title
-        'title-lg': ['24px', { lineHeight: '1.3', letterSpacing: '0', fontWeight: '600' }],
-        'title-md': ['20px', { lineHeight: '1.35', letterSpacing: '0', fontWeight: '600' }],
-        'title-sm': ['16px', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '600' }],
+        'title-lg': ['24px', { lineHeight: '1.3', letterSpacing: '0' }],
+        'title-md': ['20px', { lineHeight: '1.35', letterSpacing: '0' }],
+        'title-sm': ['16px', { lineHeight: '1.4', letterSpacing: '0' }],
 
         // Number (BinancePlex)
-        'number-display': ['40px', { lineHeight: '1.1', letterSpacing: '-0.3px', fontWeight: '700' }],
-        'number-md': ['16px', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '500' }],
-        'number-sm': ['14px', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '500' }],
+        'number-display': ['40px', { lineHeight: '1.1', letterSpacing: '-0.3px' }],
+        'number-md': ['16px', { lineHeight: '1.4', letterSpacing: '0' }],
+        'number-sm': ['14px', { lineHeight: '1.4', letterSpacing: '0' }],
 
         // Body
-        'body-md': ['14px', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '400' }],
-        'body-sm': ['13px', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '1.5', letterSpacing: '0' }],
+        'body-sm': ['13px', { lineHeight: '1.5', letterSpacing: '0' }],
 
         // Caption
-        caption: ['12px', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '500' }],
+        caption: ['12px', { lineHeight: '1.4', letterSpacing: '0' }],
 
         // Button
-        button: ['14px', { lineHeight: '1', letterSpacing: '0', fontWeight: '600' }],
+        button: ['14px', { lineHeight: '1', letterSpacing: '0' }],
 
         // Navigation
-        'nav-link': ['14px', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '500' }],
+        'nav-link': ['14px', { lineHeight: '1.4', letterSpacing: '0' }],
+      },
+
+      fontWeight: {
+        400: '400',
+        500: '500',
+        600: '600',
+        700: '700',
       },
 
       fontFamily: {
