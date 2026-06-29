@@ -1,0 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 커밋 메시지 파일 읽기
+commit_msg=$(cat "$1")
+
+# ADD/UPD/FIX/DEL 형식 검증
+if ! echo "$commit_msg" | grep -qE '^(ADD|UPD|FIX|DEL):'; then
+  echo "❌ 커밋 메시지 형식이 잘못되었습니다."
+  echo ""
+  echo "올바른 형식:"
+  echo "  ADD: 새 기능 추가"
+  echo "  UPD: 기존 코드 수정"
+  echo "  FIX: 버그 수정"
+  echo "  DEL: 코드/파일 삭제"
+  echo ""
+  echo "현재 메시지: $commit_msg"
+  exit 1
+fi
+
+exit 0
