@@ -86,13 +86,6 @@ const config: Config = {
         'nav-link': ['14px', { lineHeight: '1.4', letterSpacing: '0' }],
       },
 
-      fontWeight: {
-        400: '400',
-        500: '500',
-        600: '600',
-        700: '700',
-      },
-
       fontFamily: {
         // BinanceNova for display & body
         'binance-nova': ['BinanceNova', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
