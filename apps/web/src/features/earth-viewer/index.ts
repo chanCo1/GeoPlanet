@@ -1,2 +1,2 @@
-export { EarthGlobe } from './ui/EarthGlobe';
-export { EARTH_CONFIG } from './model';
+export { EarthGlobe } from '@features/earth-viewer/ui/EarthGlobe';
+export { EARTH_CONFIG } from '@features/earth-viewer/model';

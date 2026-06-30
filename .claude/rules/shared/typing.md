@@ -92,3 +92,39 @@ function dtoToModel(dto: IUserResponseDTO): IUser {
 - 컴포넌트: `PascalCase` (UserProfile.tsx)
 - 유틸리티: `camelCase` (formatDate.ts)
 - 타입: `PascalCase` (User.ts)
+
+## Import 경로: 절대경로 필수
+
+**상대경로 금지**, 무조건 경로 별칭으로 절대경로 사용:
+
+```typescript
+// ❌ 금지: 상대경로
+import { Button } from '../shared/ui/Button';
+import { useAsync } from '../../shared/hooks/useAsync';
+import { EARTH_CONFIG } from '../model';
+
+// ✅ 필수: 절대경로 (경로 별칭)
+import { Button } from '@shared/ui/Button';
+import { useAsync } from '@shared/hooks/useAsync';
+import { EARTH_CONFIG } from '@features/earth-viewer/model';
+```
+
+**프론트엔드 경로 별칭**:
+- `@/*` → `src/*`
+- `@app/*` → `src/app/*`
+- `@pages/*` → `src/pages/*`
+- `@widgets/*` → `src/widgets/*`
+- `@features/*` → `src/features/*`
+- `@entities/*` → `src/entities/*`
+- `@shared/*` → `src/shared/*`
+
+**백엔드 경로 별칭**:
+- `@/*` → `src/*`
+- `@modules/*` → `src/modules/*`
+- `@common/*` → `src/common/*`
+- `@config/*` → `src/config/*`
+
+**규칙**:
+- ✅ 항상 절대경로 사용
+- ✅ 중첩이 깊어도 경로 별칭 사용
+- ❌ 상대경로 (`../`, `./`) 절대 금지

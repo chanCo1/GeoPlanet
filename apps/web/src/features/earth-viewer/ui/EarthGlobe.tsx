@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
-import { EARTH_CONFIG } from '../model';
+import { EARTH_CONFIG } from '@features/earth-viewer/model';
 
 function EarthMesh() {
   const meshRef = useRef<THREE.Mesh>(null);
