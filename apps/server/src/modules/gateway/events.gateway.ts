@@ -33,7 +33,7 @@ export class EventsGateway
   }
 
   @SubscribeMessage('message')
-  handleMessage(client: Socket, payload: unknown): void {
+  handleMessage(_client: Socket, payload: unknown): void {
     this.server.emit('message', payload);
   }
 }
