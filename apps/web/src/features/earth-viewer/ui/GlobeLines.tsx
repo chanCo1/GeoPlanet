@@ -64,7 +64,7 @@ function buildEarthTexture(data: IGeoData): THREE.CanvasTexture {
 
       // 2. 선명한 선 (중심)
       ctx.shadowBlur = 4;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.1;
       ctx.globalAlpha = 0.9;
       ctx.stroke();
 

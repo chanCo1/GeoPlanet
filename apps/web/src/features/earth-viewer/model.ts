@@ -56,7 +56,7 @@ export const EARTH_CONFIG = {
   controls: {
     enableZoom: true,
     enablePan: false,
-    minDistance: 3.5,
+    minDistance: 3,
     maxDistance: 12,
     autoRotate: false,
     zoomSpeed: 0.6,

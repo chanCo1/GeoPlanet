@@ -56,6 +56,7 @@ src/
 - **스타일링**: Tailwind CSS
 - **상태 관리**: Zustand
 - **데이터 페칭**: @tanstack/react-query
+- **서버 통신**: Axios
 - **3D 그래픽**: @react-three/fiber, @react-three/drei, Three.js
 - **애니메이션**: GSAP
 
