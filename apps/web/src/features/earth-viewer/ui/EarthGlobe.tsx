@@ -1,25 +1,29 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { EARTH_CONFIG } from '@features/earth-viewer/model';
 import { GlobeLines } from '@features/earth-viewer/ui/GlobeLines';
 import { FlightDots } from '@features/earth-viewer/ui/FlightDots';
+import { FlightTrack } from '@features/earth-viewer/ui/FlightTrack';
 import { FlightHUD } from '@features/earth-viewer/ui/FlightHUD';
 import { useFlights } from '@/shared/hooks/useFlights';
 import type { IFlightState } from '@/shared/types/flight';
 
 interface IEarthGroupProps {
   states: IFlightState[];
+  selectedFlight: IFlightState | null;
+  onSelect: (flight: IFlightState | null) => void;
+  isRotating: boolean;
 }
 
-function EarthGroup({ states }: IEarthGroupProps) {
+function EarthGroup({ states, selectedFlight, onSelect, isRotating }: IEarthGroupProps) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_state, delta) => {
-    if (groupRef.current) {
+    if (groupRef.current && isRotating) {
       groupRef.current.rotation.y += delta * EARTH_CONFIG.rotation.speed;
     }
   });
@@ -58,7 +62,10 @@ function EarthGroup({ states }: IEarthGroupProps) {
       <GlobeLines />
 
       {/* 실시간 항공기 */}
-      <FlightDots states={states} />
+      <FlightDots states={states} onSelect={onSelect} />
+
+      {/* 선택된 항공기 동선 */}
+      {selectedFlight && <FlightTrack state={selectedFlight} />}
     </group>
   );
 }
@@ -66,6 +73,8 @@ function EarthGroup({ states }: IEarthGroupProps) {
 export function EarthGlobe() {
   const flightData = useFlights();
   const states = flightData?.states ?? [];
+  const [selectedFlight, setSelectedFlight] = useState<IFlightState | null>(null);
+  const [isRotating, setIsRotating] = useState(true);
 
   return (
     <div className="relative w-full h-full">
@@ -73,6 +82,7 @@ export function EarthGlobe() {
         camera={{ position: EARTH_CONFIG.camera.position, fov: EARTH_CONFIG.camera.fov }}
         gl={{ antialias: true }}
         style={{ width: '100%', height: '100%' }}
+        onPointerMissed={() => setSelectedFlight(null)}
       >
         <color attach="background" args={[EARTH_CONFIG.colors.background]} />
         <ambientLight intensity={EARTH_CONFIG.lights.ambient.intensity} />
@@ -88,7 +98,12 @@ export function EarthGlobe() {
           speed={EARTH_CONFIG.stars.speed}
         />
 
-        <EarthGroup states={states} />
+        <EarthGroup
+          states={states}
+          selectedFlight={selectedFlight}
+          onSelect={setSelectedFlight}
+          isRotating={isRotating}
+        />
 
         {/* 마우스 회전 / 줌 */}
         <OrbitControls
@@ -103,6 +118,13 @@ export function EarthGlobe() {
       </Canvas>
 
       <FlightHUD data={flightData} />
+
+      <button
+        onClick={() => setIsRotating((v) => !v)}
+        className="absolute bottom-4 right-4 z-10 font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded border border-[#2dbdb6]/30 bg-black/60 text-[#2dbdb6] hover:bg-[#2dbdb6]/10 transition-colors select-none"
+      >
+        {isRotating ? '⏸ 회전 정지' : '▶ 회전 시작'}
+      </button>
     </div>
   );
 }
