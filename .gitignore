@@ -40,3 +40,6 @@ coverage/
 
 # Turbo
 .turbo/
+
+# TypeScript 빌드 캐시 파일 제외
+*.tsbuildinfo
