@@ -5,37 +5,28 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { EARTH_CONFIG } from '@features/earth-viewer/model';
+import { GlobeLines } from '@features/earth-viewer/ui/GlobeLines';
 
-function EarthMesh() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const wireRef = useRef<THREE.Mesh>(null);
+function EarthGroup() {
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += delta * EARTH_CONFIG.rotation.speed;
-    }
-    if (wireRef.current) {
-      wireRef.current.rotation.y += delta * EARTH_CONFIG.rotation.speed;
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * EARTH_CONFIG.rotation.speed;
     }
   });
 
   return (
-    <>
-      {/* 지구 본체 */}
-      <mesh ref={meshRef}>
+    <group ref={groupRef}>
+      {/* 지구 본체 - 어두운 네이비 */}
+      <mesh>
         <sphereGeometry args={[EARTH_CONFIG.radius, EARTH_CONFIG.segments, EARTH_CONFIG.segments]} />
-        <meshPhongMaterial
-          color={new THREE.Color(EARTH_CONFIG.colors.ocean)}
-          specular={new THREE.Color(EARTH_CONFIG.colors.specular)}
-          shininess={EARTH_CONFIG.material.shininess}
-          emissive={new THREE.Color(EARTH_CONFIG.colors.emissive)}
-          emissiveIntensity={EARTH_CONFIG.material.emissiveIntensity}
-        />
+        <meshBasicMaterial color={EARTH_CONFIG.colors.ocean} />
       </mesh>
 
       {/* 위경도 격자선 */}
-      <mesh ref={wireRef}>
-        <sphereGeometry args={[EARTH_CONFIG.radius + 0.01, 24, 24]} />
+      <mesh>
+        <sphereGeometry args={[EARTH_CONFIG.radius + 0.003, 24, 12]} />
         <meshBasicMaterial
           color={EARTH_CONFIG.colors.wireframe}
           wireframe
@@ -44,17 +35,20 @@ function EarthMesh() {
         />
       </mesh>
 
-      {/* 대기층 글로우 */}
-      {/* <mesh>
-        <sphereGeometry args={[EARTH_CONFIG.radius + 0.15, EARTH_CONFIG.segments, EARTH_CONFIG.segments]} />
+      {/* 대기층 글로우 (BackSide로 안쪽에서 바깥쪽으로 빛남) */}
+      <mesh>
+        <sphereGeometry args={[EARTH_CONFIG.radius + 0.1, EARTH_CONFIG.segments, EARTH_CONFIG.segments]} />
         <meshBasicMaterial
-          color={EARTH_CONFIG.colors.ocean}
+          color={EARTH_CONFIG.colors.glow}
           transparent
-          opacity={EARTH_CONFIG.material.atmosphereOpacity}
+          opacity={EARTH_CONFIG.material.glowOpacity}
           side={THREE.BackSide}
         />
-      </mesh> */}
-    </>
+      </mesh>
+
+      {/* GeoJSON 대륙 경계선 */}
+      <GlobeLines />
+    </group>
   );
 }
 
@@ -66,17 +60,7 @@ export function EarthGlobe() {
       style={{ width: '100%', height: '100%' }}
     >
       <color attach="background" args={[EARTH_CONFIG.colors.background]} />
-
-      {/* 조명 */}
       <ambientLight intensity={EARTH_CONFIG.lights.ambient.intensity} />
-      {EARTH_CONFIG.lights.directional.map((light, idx) => (
-        <directionalLight
-          key={idx}
-          position={light.position}
-          intensity={light.intensity}
-          color={light.color}
-        />
-      ))}
 
       {/* 별 배경 */}
       <Stars
@@ -89,7 +73,7 @@ export function EarthGlobe() {
         speed={EARTH_CONFIG.stars.speed}
       />
 
-      <EarthMesh />
+      <EarthGroup />
 
       {/* 마우스 회전 / 줌 */}
       <OrbitControls
