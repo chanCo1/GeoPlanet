@@ -21,16 +21,12 @@ GeoPlanet/
 ```bash
 # 의존성 설치
 pnpm install
-
 # 개발 모드 - 모든 앱 동시 실행
 pnpm dev
-
 # 프로덕션 빌드
 pnpm build
-
 # 린팅
 pnpm lint
-
 # 타입 체크
 pnpm type-check
 ```

@@ -1,3 +1,8 @@
+---
+paths:
+  - "/apps/web/**"
+---
+
 # 프론트엔드 TDD
 
 **반드시 TDD로 개발**: RED → GREEN → REFACTOR

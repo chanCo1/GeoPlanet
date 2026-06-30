@@ -1,3 +1,8 @@
+---
+paths:
+  - "/apps/web/**"
+---
+
 # 프론트엔드 코딩 표준
 
 ## TypeScript 규칙
@@ -20,7 +25,7 @@ const data: Record<string, unknown> = JSON.parse(response);
 ## React 컴포넌트
 
 ```typescript
-interface Props {
+interface IProps {
   title: string;
   onClose: () => void;
 }
@@ -55,7 +60,7 @@ export const useUserStore = create<UserState>((set) => ({
 
 ```typescript
 interface IUserProfile { }           // 인터페이스
-type UserStatus = 'active';          // 타입
+type TUserStatus = 'active';          // 타입
 const getUsername = () => { };       // 함수
 const API_BASE_URL = 'http://...';   // 상수
 ```

@@ -1,3 +1,8 @@
+---
+paths:
+  - "/"
+---
+
 # 아키텍처 가이드
 
 ## 프론트엔드 아키텍처: Feature-Driven Design (FSD)

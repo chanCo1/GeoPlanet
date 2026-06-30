@@ -1,3 +1,8 @@
+---
+paths:
+  - "/apps/server/**"
+---
+
 # 백엔드 코딩 표준
 
 ## TypeScript 규칙
