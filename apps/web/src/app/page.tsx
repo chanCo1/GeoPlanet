@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const EarthGlobe = dynamic(
-  () => import("@/features/earth-viewer/EarthGlobe").then((m) => m.EarthGlobe),
+  () => import("@/features/earth-viewer").then((m) => m.EarthGlobe),
   { ssr: false },
 );
 

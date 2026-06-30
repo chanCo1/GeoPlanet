@@ -51,36 +51,28 @@ entities/
 #### 3. **기능 계층** (`src/features/`)
 비즈니스 로직 및 기능 구현 - 독립적이고 캡슐화된 기능.
 
-**단순한 구조** (권장 - 대부분의 경우):
 ```
 features/
-├── earth-viewer/
-│   └── EarthGlobe.tsx         # 컴포넌트
-├── search/
-│   └── SearchBox.tsx
-└── map-viewer/
-    └── MapViewer.tsx
-```
-
-**복잡한 구조** (필요시만 - 파일이 많을 때):
-```
-features/
-└── complex-feature/
-    ├── ComplexComponent.tsx    # 메인 컴포넌트
-    ├── model.ts               # 상태/타입
-    ├── api.ts                 # API 호출
-    ├── hooks.ts               # 커스텀 훅
-    └── index.ts               # 공개 API
+├── map-viewer/
+│   ├── ui/
+│   │   └── MapViewer.tsx
+│   ├── model.ts
+│   ├── api.ts
+│   └── index.ts
+└── search/
+    ├── ui/
+    │   └── SearchBox.tsx
+    ├── model.ts
+    └── index.ts
 ```
 
 **규칙**:
 - ✅ `shared/`와 `entities/`에서 임포트 가능
 - ✅ 독립적인 기능 모듈
 - ✅ 자체 포함된 비즈니스 로직
-- ✅ 필요시만 하위 폴더 구성 (`ui/`, `hooks/` 등)
+- ✅ `index.ts`를 통한 공개 API 내보내기
 - ❌ 다른 기능, 위젯, 페이지, 앱에서 임포트 불가
 - ❌ 순환 의존성 없음
-- ❌ 과도한 폴더 계층화 금지 (단순할 수록 좋음)
 
 #### 4. **위젯 계층** (`src/widgets/`)
 여러 기능을 조합한 복합 위젯 - 페이지 섹션.
