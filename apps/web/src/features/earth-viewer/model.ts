@@ -29,7 +29,7 @@ export const EARTH_CONFIG = {
 
   // 카메라
   camera: {
-    position: [0, 0, 5.5] as [number, number, number],
+    position: [0, 0, 7] as [number, number, number],
     fov: 45,
   },
 

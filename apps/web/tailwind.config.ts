@@ -14,8 +14,8 @@ const config: Config = {
       colors: {
         // Brand & Accent
         primary: '#2dbdb6',
-        'primary-active': '#f0b90b',
-        'primary-disabled': '#3a3a1f',
+        'primary-active': '#4bf0e6',
+        'primary-disabled': '#152e2c',
         'accent-turquoise': '#fcd535',
 
         // Surface

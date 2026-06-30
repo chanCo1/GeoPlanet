@@ -15,7 +15,7 @@ const buttonVariants = cva(
         primary:
           'bg-primary text-on-primary hover:bg-primary-active disabled:bg-primary-disabled disabled:text-muted',
         outline:
-          'border border-hairline-on-dark text-body bg-transparent hover:bg-surface-elevated-dark disabled:text-muted disabled:border-hairline-on-dark',
+          'border border-primary text-body bg-transparent hover:bg-surface-elevated-dark disabled:text-muted disabled:border-hairline-on-dark',
         ghost:
           'text-body bg-transparent hover:bg-surface-elevated-dark disabled:text-muted',
         danger:

@@ -63,7 +63,7 @@ function EarthGroup({ states, selectedFlight, onSelect, isRotating }: IEarthGrou
       <GlobeLines />
 
       {/* 실시간 항공기 */}
-      <FlightDots states={states} onSelect={onSelect} />
+      {/* <FlightDots states={states} onSelect={onSelect} /> */}
 
       {/* 선택된 항공기 동선 */}
       {selectedFlight && <FlightTrack state={selectedFlight} />}
@@ -120,13 +120,14 @@ export function EarthGlobe() {
 
       <Logo className="absolute top-4 left-4 z-10" />
 
-      <FlightHUD data={flightData} />
+      {/* <FlightHUD data={flightData} /> */}
 
       <Button
+        variant='outline'
+        className="absolute bottom-4 right-4 z-10 w-12"
         onClick={() => setIsRotating((v) => !v)}
-        className="absolute bottom-4 right-4 z-10 font-mono"
       >
-        {isRotating ? '⏸ 회전 정지' : '▶ 회전 시작'}
+        <span className='text-primary'>{isRotating ? '⏸' : '▶'}</span>
       </Button>
     </div>
   );
