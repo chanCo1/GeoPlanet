@@ -11,5 +11,6 @@ import { OpenSkyService } from '@modules/opensky/opensky.service';
   ],
   controllers: [OpenSkyController],
   providers: [OpenSkyService],
+  exports: [OpenSkyService],
 })
 export class OpenSkyModule {}

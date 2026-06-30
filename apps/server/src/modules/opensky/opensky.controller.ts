@@ -11,7 +11,7 @@ export class OpenSkyController {
    * @returns 항공기 상태 목록 (위치, 속도, 고도 등)
    */
   @Get('states')
-  async getStates(): Promise<FlightStatesResponseDto> {
+  async getStates(): Promise<FlightStatesResponseDto | null> {
     return this.openSkyService.getFlightStates();
   }
 }
