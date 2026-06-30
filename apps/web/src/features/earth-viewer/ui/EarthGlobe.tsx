@@ -6,8 +6,16 @@ import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { EARTH_CONFIG } from '@features/earth-viewer/model';
 import { GlobeLines } from '@features/earth-viewer/ui/GlobeLines';
+import { FlightDots } from '@features/earth-viewer/ui/FlightDots';
+import { FlightHUD } from '@features/earth-viewer/ui/FlightHUD';
+import { useFlights } from '@/shared/hooks/useFlights';
+import type { IFlightState } from '@/shared/types/flight';
 
-function EarthGroup() {
+interface IEarthGroupProps {
+  states: IFlightState[];
+}
+
+function EarthGroup({ states }: IEarthGroupProps) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_state, delta) => {
@@ -48,43 +56,53 @@ function EarthGroup() {
 
       {/* GeoJSON 대륙 경계선 */}
       <GlobeLines />
+
+      {/* 실시간 항공기 */}
+      <FlightDots states={states} />
     </group>
   );
 }
 
 export function EarthGlobe() {
+  const flightData = useFlights();
+  const states = flightData?.states ?? [];
+
   return (
-    <Canvas
-      camera={{ position: EARTH_CONFIG.camera.position, fov: EARTH_CONFIG.camera.fov }}
-      gl={{ antialias: true }}
-      style={{ width: '100%', height: '100%' }}
-    >
-      <color attach="background" args={[EARTH_CONFIG.colors.background]} />
-      <ambientLight intensity={EARTH_CONFIG.lights.ambient.intensity} />
+    <div className="relative w-full h-full">
+      <Canvas
+        camera={{ position: EARTH_CONFIG.camera.position, fov: EARTH_CONFIG.camera.fov }}
+        gl={{ antialias: true }}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <color attach="background" args={[EARTH_CONFIG.colors.background]} />
+        <ambientLight intensity={EARTH_CONFIG.lights.ambient.intensity} />
 
-      {/* 별 배경 */}
-      <Stars
-        radius={EARTH_CONFIG.stars.radius}
-        depth={EARTH_CONFIG.stars.depth}
-        count={EARTH_CONFIG.stars.count}
-        factor={EARTH_CONFIG.stars.factor}
-        saturation={EARTH_CONFIG.stars.saturation}
-        fade
-        speed={EARTH_CONFIG.stars.speed}
-      />
+        {/* 별 배경 */}
+        <Stars
+          radius={EARTH_CONFIG.stars.radius}
+          depth={EARTH_CONFIG.stars.depth}
+          count={EARTH_CONFIG.stars.count}
+          factor={EARTH_CONFIG.stars.factor}
+          saturation={EARTH_CONFIG.stars.saturation}
+          fade
+          speed={EARTH_CONFIG.stars.speed}
+        />
 
-      <EarthGroup />
+        <EarthGroup states={states} />
 
-      {/* 마우스 회전 / 줌 */}
-      <OrbitControls
-        enableZoom={EARTH_CONFIG.controls.enableZoom}
-        enablePan={EARTH_CONFIG.controls.enablePan}
-        minDistance={EARTH_CONFIG.controls.minDistance}
-        maxDistance={EARTH_CONFIG.controls.maxDistance}
-        autoRotate={EARTH_CONFIG.controls.autoRotate}
-        zoomSpeed={EARTH_CONFIG.controls.zoomSpeed}
-        rotateSpeed={EARTH_CONFIG.controls.rotateSpeed}
-      />
-    </Canvas>
+        {/* 마우스 회전 / 줌 */}
+        <OrbitControls
+          enableZoom={EARTH_CONFIG.controls.enableZoom}
+          enablePan={EARTH_CONFIG.controls.enablePan}
+          minDistance={EARTH_CONFIG.controls.minDistance}
+          maxDistance={EARTH_CONFIG.controls.maxDistance}
+          autoRotate={EARTH_CONFIG.controls.autoRotate}
+          zoomSpeed={EARTH_CONFIG.controls.zoomSpeed}
+          rotateSpeed={EARTH_CONFIG.controls.rotateSpeed}
+        />
+      </Canvas>
+
+      <FlightHUD data={flightData} />
+    </div>
   );
 }
