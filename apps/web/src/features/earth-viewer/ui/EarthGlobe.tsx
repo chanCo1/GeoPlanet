@@ -11,7 +11,7 @@ import { FlightTrack } from '@features/earth-viewer/ui/FlightTrack';
 import { FlightHUD } from '@features/earth-viewer/ui/FlightHUD';
 import { useFlights } from '@/shared/hooks/useFlights';
 import type { IFlightState } from '@/shared/types/flight';
-import { Button } from '@/shared/ui';
+import { Button, Logo } from '@/shared/ui';
 
 interface IEarthGroupProps {
   states: IFlightState[];
@@ -38,7 +38,7 @@ function EarthGroup({ states, selectedFlight, onSelect, isRotating }: IEarthGrou
       </mesh>
 
       {/* 위경도 격자선 */}
-      <mesh>
+      {/* <mesh>
         <sphereGeometry args={[EARTH_CONFIG.radius + 0.003, 24, 12]} />
         <meshBasicMaterial
           color={EARTH_CONFIG.colors.wireframe}
@@ -46,7 +46,7 @@ function EarthGroup({ states, selectedFlight, onSelect, isRotating }: IEarthGrou
           transparent
           opacity={EARTH_CONFIG.material.wireframeOpacity}
         />
-      </mesh>
+      </mesh> */}
 
       {/* 대기층 글로우 (BackSide로 안쪽에서 바깥쪽으로 빛남) */}
       <mesh>
@@ -95,7 +95,7 @@ export function EarthGlobe() {
           count={EARTH_CONFIG.stars.count}
           factor={EARTH_CONFIG.stars.factor}
           saturation={EARTH_CONFIG.stars.saturation}
-          fade
+          // fade
           speed={EARTH_CONFIG.stars.speed}
         />
 
@@ -117,6 +117,8 @@ export function EarthGlobe() {
           rotateSpeed={EARTH_CONFIG.controls.rotateSpeed}
         />
       </Canvas>
+
+      <Logo className="absolute top-4 left-4 z-10" />
 
       <FlightHUD data={flightData} />
 

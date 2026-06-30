@@ -13,10 +13,10 @@ const config: Config = {
     extend: {
       colors: {
         // Brand & Accent
-        primary: '#fcd535',
+        primary: '#2dbdb6',
         'primary-active': '#f0b90b',
         'primary-disabled': '#3a3a1f',
-        'accent-turquoise': '#2dbdb6',
+        'accent-turquoise': '#fcd535',
 
         // Surface
         ink: '#181a20',
@@ -87,6 +87,7 @@ const config: Config = {
       },
 
       fontFamily: {
+        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         // BinanceNova for display & body
         'binance-nova': ['BinanceNova', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         // BinancePlex for numbers
