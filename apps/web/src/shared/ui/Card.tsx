@@ -1,7 +1,22 @@
 import { type FC, type HTMLAttributes, type ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/shared/utils/cn';
 
-interface ICardProps extends HTMLAttributes<HTMLDivElement> {
+const cardVariants = cva('rounded-xl border p-4', {
+  variants: {
+    variant: {
+      default: 'bg-surface-card-dark border-hairline-on-dark',
+      glass:   'bg-black/10 border-white/10 backdrop-blur-sm',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+interface ICardProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardVariants> {
   children: ReactNode;
 }
 
@@ -17,14 +32,8 @@ interface ICardContentProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export const Card: FC<ICardProps> = ({ className, children, ...props }) => (
-  <div
-    className={cn(
-      'rounded-xl bg-surface-card-dark border border-hairline-on-dark',
-      className,
-    )}
-    {...props}
-  >
+export const Card: FC<ICardProps> = ({ variant, className, children, ...props }) => (
+  <div className={cn(cardVariants({ variant }), className)} {...props}>
     {children}
   </div>
 );

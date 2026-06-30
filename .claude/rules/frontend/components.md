@@ -58,6 +58,11 @@ export const Component: FC<IProps> = ({ variant, size, className, ...props }) =>
 );
 ```
 
+## tailwind 사용 규칙
+- []를 사용한 class 적용 금지 (예시: 'bg-[#232323]' 적용 금지)
+- 무조건 tailwind에 등록된 색상 사용
+
+
 ## 단순 컴포넌트 (variant 없음)
 
 ```typescript

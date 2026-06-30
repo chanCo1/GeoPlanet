@@ -11,6 +11,7 @@ import { FlightTrack } from '@features/earth-viewer/ui/FlightTrack';
 import { FlightHUD } from '@features/earth-viewer/ui/FlightHUD';
 import { useFlights } from '@/shared/hooks/useFlights';
 import type { IFlightState } from '@/shared/types/flight';
+import { Button } from '@/shared/ui';
 
 interface IEarthGroupProps {
   states: IFlightState[];
@@ -119,12 +120,12 @@ export function EarthGlobe() {
 
       <FlightHUD data={flightData} />
 
-      <button
+      <Button
         onClick={() => setIsRotating((v) => !v)}
-        className="absolute bottom-4 right-4 z-10 font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded border border-[#2dbdb6]/30 bg-black/60 text-[#2dbdb6] hover:bg-[#2dbdb6]/10 transition-colors select-none"
+        className="absolute bottom-4 right-4 z-10 font-mono"
       >
         {isRotating ? '⏸ 회전 정지' : '▶ 회전 시작'}
-      </button>
+      </Button>
     </div>
   );
 }

@@ -128,3 +128,6 @@ import { EARTH_CONFIG } from '@features/earth-viewer/model';
 - ✅ 항상 절대경로 사용
 - ✅ 중첩이 깊어도 경로 별칭 사용
 - ❌ 상대경로 (`../`, `./`) 절대 금지
+
+## 린트 정리
+- [prettierrc](../../../.prettierrc) 참조
